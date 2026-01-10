@@ -13,9 +13,9 @@ I use kubctl apply on yaml files either manually written by myself or generated 
 ## Configuration
 The needed configuration are supplied to helm when generating the templae yaml file. See the ***install.sh*** or ***upgrade.sh*** scripts in each install or upgrade directory for how it is set up.
 
-The controlplane must not have the kube-proxy and default cni (which is flannel) installed. They have to be removed from the machine configuration of the control nodes and the kube-proxy and flannel deployments have to be removed from the cluster. They are usually installed by default during the startup/installation of the cluster unless you did the modifications beforehand.
+The cluster cannt have not have the kube-proxy and default cni (which is flannel) installed and use cilium at the same time. They have to be removed from the machine configuration of the nodes and the kube-proxy and flannel deployments have to be removed from the cluster. They are usually installed by default during the startup/installation of the cluster unless you did the modifications beforehand.
 
-Patch the machine configuration with the following:
+Patch the machine configuration of the nodes with the following:
 
 ```
 cluster:
@@ -59,7 +59,7 @@ I have only tested with kubernetes scope.
 --set ipam.mode=kubernetes
 ```
 
-### L2 Annoucement
+### L2-annoucement
 To make use of ciliums loadbalancer ip-pool we have to enable L2-announcement and increase the rate limits for qps and burst,
 
 ```

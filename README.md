@@ -1,5 +1,5 @@
-# Eclipse kubernetes kluster
-This is the configuration repository for my six node talos cluster with three control nodes, which also acts as worker nodes, and three dedicated worker nodes.
+# Eclipse kubernetes kluster using talos
+This is the configuration repository for my six node talos cluster with six nodes. Three acts as control nodes and the other three as worker nodes. All nodes allow deployment.
 
 ## Directory structure
 The eclipse root configuration directory contains one directory for the talos configuration and the other for all the kubernetes installations that can be added, such as cilium, longhorn, certmanger, dashboard and so on.
@@ -29,6 +29,18 @@ machine:
                ip: 192.168.1.8
 
 ```
+
+### NTP Time servers
+The cluster uses the Netnod distributed time servers at Sundsvall, Sweden. I have not tested using the anycast address ntp.se yet.
+
+```
+machine:
+   time:
+      servers:
+         - svl1.ntp.se
+         - svl2.ntp.se
+```
+
 ### Support for longhorn
 See the readme file for the longhorn installation if you plan on installing longhorn. You need to add support for ***siderolabs/iscsi-tools*** and ***siderolabs/util-linux-tools*** into the image. Make sure they are included in the talos image you generate from the talos image factory.
 
