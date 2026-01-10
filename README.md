@@ -42,7 +42,7 @@ machine:
 ```
 
 ### Support for longhorn
-See the readme file for the longhorn installation if you plan on installing longhorn. You need to add support for ***siderolabs/iscsi-tools*** and ***siderolabs/util-linux-tools*** into the image. Make sure they are included in the talos image you generate from the talos image factory.
+See the ***README.md*** file for longhorn if you plan on installing it to see what to change in the machine configuration. You need, among other things, also add support for ***siderolabs/iscsi-tools*** and ***siderolabs/util-linux-tools***. Make sure they are included in the talos image you generate from the talos image factory.
 
 # Tips and tricks
 
