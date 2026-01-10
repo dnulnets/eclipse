@@ -1,21 +1,21 @@
-# Eclipse talos cilium configuration
+# Eclipse cilium configuration
 
-This is the configuration and changes neede to run cilium on a talos kubernetes cluster. It is also configured to run
-with L2-Announcement for loadbalancing, together with istio in ambient mode and with no kube-proxy.
+This is the configuration and changes needed to run cilium on a talos kubernetes cluster. It is configured to run
+with L2-announcement and a loadbalancer ip-pool, together with istio in ambient mode and with no kube-proxy.
 
 ## Directory structure
 The main installation is in the install directory and any upgrades thereafter in an upgrade directory. Generic setup
-is stored in the cilium root directory such as the loadbalancer pool and L2 accouncement.
+is stored in the cilium root directory such as the loadbalancer ip-pool and L2-accouncement.
 
 
-I usually use kubctl apply on yaml files either manually written by myself or generated from helm with template command.
+I use kubctl apply on yaml files either manually written by myself or generated from helm with the template command.
 
 ## Configuration
-The needed configuration are supplied to helm when generating the templae yaml file. See the install or upgrade scripts in each directory for how it is set up.
+The needed configuration are supplied to helm when generating the templae yaml file. See the ***install.sh*** or ***upgrade.sh*** scripts in each install or upgrade directory for how it is set up.
 
-The talos controlplane cannot have the kube-proxy and default cni (which is flannel) installed. You have to remove them from the machine configuration of the control planes and clean up the kube-proxy and flannel deployments from the cluster. They are usually installed by default during the startup/instalaltion of the cluster unless you did the modifications beforehand.
+The controlplane must not have the kube-proxy and default cni (which is flannel) installed. They have to be removed from the machine configuration of the control nodes and the kube-proxy and flannel deployments have to be removed from the cluster. They are usually installed by default during the startup/installation of the cluster unless you did the modifications beforehand.
 
-Patch the configuration with the following:
+Patch the machine configuration with the following:
 
 ```
 cluster:
