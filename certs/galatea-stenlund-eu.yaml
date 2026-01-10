@@ -1,0 +1,13 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: galatea-certificate
+  namespace: istio-system
+spec:
+  commonName: galatea.stenlund.eu
+  dnsNames:
+    - galatea.stenlund.eu
+  issuerRef:
+    name: letsencrypt-production
+    kind: ClusterIssuer
+  secretName: galatea-certificate

@@ -1,0 +1,1 @@
+You must apply the manifest with the -n kubernetes-dashboard flag

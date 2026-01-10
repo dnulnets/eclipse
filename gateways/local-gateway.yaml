@@ -1,0 +1,59 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: Gateway
+metadata:
+  name: local-gateway
+  namespace: istio-system
+  labels:
+    stenlund.se/pool: stenlund-se-pool
+  annotations:
+
+spec:
+  gatewayClassName: istio
+  addresses:
+  - type: IPAddress
+    value: 192.168.1.18
+  listeners:
+    - name: longhorn
+      hostname: longhorn.home
+      port: 443
+      protocol: HTTPS
+      allowedRoutes:
+        namespaces:
+          from: All
+      tls:
+        mode: Terminate
+        certificateRefs:
+          - name: longhorn-certificate
+    - name: dashboard
+      hostname: eclipse.home
+      port: 443
+      protocol: HTTPS
+      allowedRoutes:
+        namespaces:
+          from: All
+      tls:
+        mode: Terminate
+        certificateRefs:
+          - name: dashboard-certificate
+    - name: wordpress
+      hostname: galatea.stenlund.eu
+      port: 443
+      protocol: HTTPS
+      allowedRoutes:
+        namespaces:
+          from: All
+      tls:
+        mode: Terminate
+        certificateRefs:
+          - name: galatea-certificate
+    - name: argocd
+      hostname: argocd.home
+      port: 443
+      protocol: HTTPS
+      allowedRoutes:
+        namespaces:
+          from: All
+      tls:
+        mode: Terminate
+        certificateRefs:
+          - name: argocd-certificate

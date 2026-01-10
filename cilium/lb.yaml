@@ -1,0 +1,22 @@
+apiVersion: "cilium.io/v2alpha1"
+kind: CiliumL2AnnouncementPolicy
+metadata:
+  name: stenlund-se-l2-announcement
+spec:
+  serviceSelector:
+    matchLabels:
+      stenlund.se/pool: stenlund-se-pool
+  externalIPs: true
+  loadBalancerIPs: true
+---
+apiVersion: "cilium.io/v2"
+kind: CiliumLoadBalancerIPPool
+metadata:
+  name: "stenlund-pool"
+spec:
+  blocks:
+  - start: "192.168.1.16"
+    stop: "192.168.1.31"
+  serviceSelector:
+    matchLabels:
+      stenlund.se/pool: stenlund-se-pool

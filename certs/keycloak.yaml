@@ -1,0 +1,17 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: keycloak-certificate
+  namespace: istio-system
+spec:
+  secretName: keycloak-certificate
+  subject:
+    organizations:
+      - stenlund
+  commonName: keycloak.home
+  dnsNames:
+  - keycloak.home
+  issuerRef:
+    name: selfsigned-ca-issuer
+    kind: ClusterIssuer
+    group: cert-manager.io

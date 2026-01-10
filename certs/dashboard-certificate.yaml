@@ -1,0 +1,17 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: dashboard-certificate
+  namespace: istio-system
+spec:
+  secretName: dashboard-certificate
+  subject:
+    organizations:
+      - stenlund
+  commonName: eclipse.home
+  dnsNames:
+  - eclipse.home
+  issuerRef:
+    name: selfsigned-ca-issuer
+    kind: ClusterIssuer
+    group: cert-manager.io

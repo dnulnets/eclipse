@@ -1,0 +1,18 @@
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: letsencrypt-production
+  namespace: cert-manager
+spec:
+  acme:
+    email: tomas.stenlund@telia.com
+    server: https://acme-v02.api.letsencrypt.org/directory
+    privateKeySecretRef:
+      name: letsencrypt-production-issuer-account-key
+    solvers:
+    - http01:
+        gatewayHTTPRoute:
+          parentRefs:
+            - name: http-01-acme-gateway
+              namespace: istio-system
+              kind: Gateway

@@ -1,0 +1,57 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: Gateway
+metadata:
+  name: internet-gateway
+  namespace: istio-system
+  labels:
+    stenlund.se/pool: stenlund-se-pool
+#  annotations:
+#    "proxy.istio.io/config": '{"gatewayTopology" : { "forwardClientCertDetails": "ALWAYS_FORWARD_ONLY" } }'
+
+spec:
+  gatewayClassName: istio
+  addresses:
+  - type: IPAddress
+    value: 192.168.1.16
+  listeners:
+#    - name: halimede
+#      hostname: halimede.stenlund.eu
+#      port: 443
+#      protocol: HTTPS
+#      allowedRoutes:
+#        namespaces:
+#          from: All
+#      tls:
+#        mode: Terminate
+#        certificateRefs:
+#          - name: halimede-certificate
+    - name: galatea
+      hostname: galatea.stenlund.eu
+      port: 443
+      protocol: HTTPS
+      allowedRoutes:
+        namespaces:
+          from: All
+      tls:
+        mode: Terminate
+        certificateRefs:
+          - name: galatea-certificate
+    - name: forgejo
+      hostname: halimede.stenlund.eu
+      port: 443
+      protocol: HTTPS
+      allowedRoutes:
+        namespaces:
+          from: All
+      tls:
+        mode: Terminate
+        certificateRefs:
+          - name: halimede-certificate
+    - name: forgejo-ssh
+      port: 2222
+      protocol: TCP
+      allowedRoutes:
+        kinds:
+          - kind: TCPRoute
+        namespaces:
+          from: All

@@ -1,0 +1,17 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: forgejo-certificate
+  namespace: istio-system
+spec:
+  secretName: forgejo-certificate
+  subject:
+    organizations:
+      - stenlund
+  commonName: forgejo.home
+  dnsNames:
+  - forgejo.home
+  issuerRef:
+    name: selfsigned-ca-issuer
+    kind: ClusterIssuer
+    group: cert-manager.io

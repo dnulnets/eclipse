@@ -1,0 +1,19 @@
+apiVersion: barmancloud.cnpg.io/v1
+kind: ObjectStore
+metadata:
+  name: digitalocean-store
+  namespace: forgejo
+spec:
+  configuration:
+    destinationPath: "s3://stenlund/pg/"
+    endpointURL: "https://ams3.digitaloceanspaces.com"
+    s3Credentials:
+      accessKeyId:
+        name: digitalocean-secret
+        key: ACCESS_KEY_ID
+      secretAccessKey:
+        name: digitalocean-secret
+        key: ACCESS_SECRET_KEY
+    wal:
+      compression: gzip
+  retentionPolicy: "2d"
