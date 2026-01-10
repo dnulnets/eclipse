@@ -19,3 +19,4 @@ helm template cilium/cilium --version 1.18.5 \
   --set gatewayAPI.enableAlpn=true \
   --set tls.secretsNamespace.create=false \
   --set gatewayAPI.enableAppProtocol=true > cilium-ambient.yaml
+kubectl apply -f cilium-ambient.yaml

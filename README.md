@@ -1,6 +1,5 @@
-# Eclipse talos kubernetes kluster
-
-This is the configuration repository for my talos cluster.
+# Eclipse kubernetes kluster
+This is the configuration repository for my six node talos cluster with three control nodes, which also acts as worker nodes, and three dedicated worker nodes.
 
 ## Directory structure
 The eclipse root configuration directory contains one directory for the talos configuration and the other for all the kubernetes installations that can be added, such as cilium, longhorn, certmanger, dashboard and so on.
@@ -31,7 +30,7 @@ machine:
 
 ```
 ### Support for longhorn
-See the readme file for the longhorn installation if you plan on installing longhorn. You need to add support for ***siderolabs/iscsi-tools*** and ***siderolabs/util-linux-tools*** into the image.
+See the readme file for the longhorn installation if you plan on installing longhorn. You need to add support for ***siderolabs/iscsi-tools*** and ***siderolabs/util-linux-tools*** into the image. Make sure they are included in the talos image you generate from the talos image factory.
 
 # Tips and tricks
 
@@ -41,7 +40,7 @@ See the readme file for the longhorn installation if you plan on installing long
 kubectl get pods --all-namespaces | grep ContainerStatusUnknown | awk '{print "kubectl delete pod "$2" -n "$1}' | sh
 ```
 
-## Remove evenrything from a namespace and then delete the namespace
+## Remove everything from a namespace and then delete the namespace
 
 See clean_na.sh
 

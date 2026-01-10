@@ -1,5 +1,3 @@
-helm template --dry-run=server \
---
 helm template \
     cilium \
     cilium/cilium \
@@ -23,3 +21,4 @@ helm template \
     --set gatewayAPI.enableAlpn=true \
     --set tls.secretsNamespace.create=false \
     --set gatewayAPI.enableAppProtocol=true > cilium-ambient.yaml
+kubectl apply -f cilium-ambient.yaml
