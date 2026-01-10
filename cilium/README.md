@@ -35,7 +35,7 @@ kubectl delete cm kube-flannel-cfg -n kube-system
 ```
 
 ### Version, namespaces and installation parameters
-Sets the version and namespace for the cilium platform. Somehow helm do not autodetect the kube-version when gerenating the template or use dry-run, so we need to specify it. Make sure it is the version used by talos. You can use the talosctl dashboard command to view the version of the kube-system.
+Sets the version and namespace for the cilium platform. Helm do not autodetect the kubernetes version when generating the template, so we need to set it manually. Make sure it is the version used by talos. You can use ***talosctl dashboard -n IP*** command to view the version of the kube-system.
 
 ```
 --version 1.18.4
@@ -45,7 +45,7 @@ Sets the version and namespace for the cilium platform. Somehow helm do not auto
 ```
 
 ### Configuring for istio
-I run cilium with kube-proxy removed so cilium fully replaces it. To make it function with istio the following configurations needs to be done. I have used recommendations from both cilium and istio on the settings. Also if you are using BPF make sure that ***bpf.masquerade=false***. It is the default in cilium.
+The cluster runs cilium with kube-proxy removed so cilium will fully replaces it. To make it work with istio the following configurations needs to be done. I have used recommendations from both cilium and istio on the settings. Also if you are using BPF make sure that ***bpf.masquerade=false***. It is the default in cilium.
 
 ```
 --set kubeProxyReplacement=true
@@ -60,7 +60,7 @@ I have only tested with kubernetes scope.
 ```
 
 ### L2 Annoucement
-To make use of ciliums load balancer pool we have to enable L2 Announcement and increase the rate limits for qps and bursts,
+To make use of ciliums loadbalancer ip-pool we have to enable L2-announcement and increase the rate limits for qps and burst,
 
 ```
 --set l2announcements.enabled=true
@@ -89,8 +89,5 @@ Enable the gateway API.
 --set gatewayAPI.enableAppProtocol=true
 ```
 
-# L2 Loadbalancer pool
-In the cluster we are using the cilium l2 annoucement and pool functionality. It is in beta but works very good. The pool is set up from 192.168.1.16 up to and including 192.168.1.31. Any service that requires an IP from this pool must then set the label ***stenlund.se/pool: stenlund-se-pool***. The ip must then be announced and the policy is set up to annouce both external and loadbalancer IP:s and also requires that the label ***stenlund.se/pool: stenlund-se-pool*** is set.
-
-
-See ***lb.yaml*** in the root directory of the cilium deployment for more details on how it is setup.
+# Loadbalancer IP-pool
+In the cluster we are using the cilium L2-annoucement and pool functionality. It is in beta but works very good. The pool is set up from 192.168.1.16 up to and including 192.168.1.31 in the ***lb.yaml*** file. Any service that requires an IP from this pool must set the label ***stenlund.se/pool: stenlund-se-pool***. The L2-announcement uses the same label.
