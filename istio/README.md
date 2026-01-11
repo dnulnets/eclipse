@@ -30,6 +30,7 @@ metadata:
     pod-security.kubernetes.io/enforce-version: latest
   name: istio-system
 ```
+
 The deployment for the namespace is located in the ***ns.yaml*** file in the root directory.
 
 ### Ambient mode

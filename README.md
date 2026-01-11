@@ -1,4 +1,4 @@
-# Eclipse kubernetes kluster using talos
+# Kubernetes kluster using talos
 This is the configuration repository for my six node talos cluster with six nodes. Three acts as control nodes and the other three as worker nodes. All nodes allow deployment.
 
 
