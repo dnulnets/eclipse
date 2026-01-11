@@ -91,3 +91,7 @@ Enable the gateway API.
 
 # Loadbalancer IP-pool
 In the cluster we are using the cilium L2-annoucement and pool functionality. It is in beta but works very good. The pool is set up from 192.168.1.16 up to and including 192.168.1.31 in the ***lb.yaml*** file. Any service that requires an IP from this pool must set the label ***stenlund.se/pool: stenlund-se-pool***. The L2-announcement uses the same label.
+
+
+There is a sample service in the root directory ***test.yaml*** that shows an example for a service how to get an IP from the pool and publish it.
+
