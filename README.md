@@ -1,6 +1,9 @@
 # Eclipse kubernetes kluster using talos
 This is the configuration repository for my six node talos cluster with six nodes. Three acts as control nodes and the other three as worker nodes. All nodes allow deployment.
 
+
+The cluster has cilium as a CNI and istio as a service mesh running in ambient mode. The cluster also uses the gateway api and cert manager that handles certificates both private and public via letsencrypt. It has three istio gateways one for the acme protocol, one local and one external.
+
 ## Directory structure
 The eclipse root configuration directory contains one directory for the talos configuration and the other for all the kubernetes installations that can be added, such as cilium, longhorn, certmanger, dashboard and so on.
 
