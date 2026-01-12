@@ -52,3 +52,6 @@ machine:
 
 ## Routes
 The root contains ***routes.yaml*** to add longhorn to the internal url ***longhorn.home***.
+
+## Backup
+The root contains ***digitalocean-secret-sealed.yaml*** that adds a secret that can be used by longhorn for the s3s backups.
