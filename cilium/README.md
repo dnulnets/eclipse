@@ -1,4 +1,4 @@
-# Eclipse cilium configuration
+# Cilium configuration
 
 This is the configuration and changes needed to run cilium on a talos kubernetes cluster. It is configured to run
 with L2-announcement and a loadbalancer ip-pool, together with istio in ambient mode and with no kube-proxy.
