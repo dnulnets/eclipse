@@ -9,6 +9,11 @@ is stored in the cert-manager root directory such as the issuers.
 
 I use kubctl apply on yaml files either manually written by myself or generated from helm with the template command.
 
+## Dependencies
+The following direct dependencies must have been installed in the cluster, they might have additional dependencies:
+* sealed secrets
+* gateways
+
 ## Configuration
 Cert manager must use the gateway API becasue istio uses it and there is already a default ACME gateway created that cert-manager can use. So the following settings must be made when generating the deployment. 
 

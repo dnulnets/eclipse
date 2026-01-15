@@ -1,10 +1,12 @@
-MySQL shell:
+# forgejo configuration
 
-kubectl run --rm -n forgejo -it myshell --image=container-registry.oracle.com/mysql/community-operator -- mysqlsh
+This is the configuration and changes needed to run a software repository based on forgejo (git). It uses a mysql cluster based on cnpg.
 
-Create the database and user:
+Use kubectl apply on the yaml files manually written.
 
-CREATE DATABASE stenlund CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_bin';
-create user 'forgejo'@'%';
-grant all privileges on stenlund.* to 'forgejo'@'%';
-alter user 'forgejo'@'%' identified by 'changeme';
+## Dependencies
+The following direct dependencies must have been installed in the cluster, they might have additional dependencies:
+* sealed secrets
+* istio
+* certs/forgejo-certificate
+* cnpg
