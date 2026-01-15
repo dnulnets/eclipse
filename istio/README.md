@@ -4,6 +4,10 @@ This is the configuration and changes needed to run istio in ambient mode on top
 
 For the istio based gateways see the gateway directory.
 
+## Dependencies
+The following direct dependencies must have been installed in the cluster, they might have additional dependencies:
+* cilium
+
 ## Directory structure
 The main installation is in the install directory and any upgrades thereafter in an upgrade directory. Generic setup
 is stored in the istio root directory.
