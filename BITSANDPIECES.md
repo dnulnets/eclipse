@@ -1,12 +1,13 @@
 # Bits and pieces
 
-## Delete all pods in unknown state
+## Kubernetes
+### Delete all pods in unknown state
 
 ```
 kubectl get pods --all-namespaces | grep ContainerStatusUnknown | awk '{print "kubectl delete pod "$2" -n "$1}' | sh
 ```
 
-## Remove everything from a namespace and then delete the namespace
+### Remove everything from a namespace and then delete the namespace
 
 See ***clean_na.sh*** in the ***script*** directory, it originates from the location describe below.
 
@@ -16,11 +17,25 @@ Oracle Consulting Netherlands
 https://github.com/makker-nl/Kubernetes/tree/main/scripts
 ```
 
-## Untaint nodes
-If needed, I had to use this when I experimented with cilium during instalaltion and it go into some strange state where some of the nodes got tainted. So it had to be removed.
+### Untaint nodes
+If needed, I had to use this when I experimented with cilium during installation and it go into some strange state where some of the nodes got tainted. So it had to be removed.
 
 ```
 kubectl taint nodes  talos-3p1-gvn node.kubernetes.io/network-unavailable-
 ```
 
+## Talos
+
+### List files
+```
+talosctl ls -r /usr/local -n 192.168.1.116
+```
+### Check what extensions are installed
+```
+talosctl get extensions -n 192.168.1.116
+```
+### Upgrade
+```
+talosctl upgrade -n 192.168.1.75 --image factory.talos.dev/metal-installer/613e1592b2da41ae5e265e8789429f223234ab91cb4deb6bc3c0b6262961245:v1.11.5
+```
 
