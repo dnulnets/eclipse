@@ -1,6 +1,7 @@
 # Bits and pieces
-
+This just contains some commands that I have a hard time to remember.
 ## Kubernetes
+Commands for handling kubernetes.
 ### Delete all pods in unknown state
 
 ```
@@ -25,7 +26,7 @@ kubectl taint nodes  talos-3p1-gvn node.kubernetes.io/network-unavailable-
 ```
 
 ## Talos
-
+Commands for handling the talos installation.
 ### List files
 ```
 talosctl ls -r /usr/local -n 192.168.1.116
