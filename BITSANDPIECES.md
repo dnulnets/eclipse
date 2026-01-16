@@ -24,7 +24,6 @@ If needed, I had to use this when I experimented with cilium during installation
 ```
 kubectl taint nodes  talos-3p1-gvn node.kubernetes.io/network-unavailable-
 ```
-
 ## Talos
 Commands for handling the talos installation.
 ### List files
@@ -39,4 +38,3 @@ talosctl get extensions -n 192.168.1.116
 ```
 talosctl upgrade -n 192.168.1.75 --image factory.talos.dev/metal-installer/613e1592b2da41ae5e265e8789429f223234ab91cb4deb6bc3c0b6262961245:v1.11.5
 ```
-
