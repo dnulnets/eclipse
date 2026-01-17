@@ -3,7 +3,7 @@
 This is the configuration and changes needed to run longhorn. Make sure you have ***siderolabs/iscsi-tools*** and ***siderolabs/util-linux-tools*** installed. If not you have to upgrade the nodes with an image that contains those extensions.
 
 
-Run ***talosctl get extensions*** to see that the extensions are installed.
+Run ***talosctl get extensions -n <IP>*** to see that the extensions are installed.
 
 ## Directory structure
 The main installation is in the install directory and any upgrades thereafter in an upgrade directory. Generic setup

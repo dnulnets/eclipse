@@ -26,15 +26,42 @@ kubectl taint nodes  talos-3p1-gvn node.kubernetes.io/network-unavailable-
 ```
 ## Talos
 Commands for handling the talos installation.
-### List files
+### Machine config
+Patch a machine config file
 ```
-talosctl ls -r /usr/local -n 192.168.1.116
+talosctl machineconfig patch controlplane.yaml --patch @controlplane-patch-1.yaml --output controlplane.yaml
+```
+### Backup
+Backup etcd
+```
+talosctl -n <IP> etcd snapshot db.snapshot
+```
+Backup machine configuration
+```
+talosctl -n <IP> get mc v1alpha1 -o yaml
+```
+See ***https://docs.siderolabs.com/talos/v1.9/build-and-extend-talos/cluster-operations-and-maintenance/disaster-recovery#backup***
+### Recovery
+See ***https://docs.siderolabs.com/talos/v1.9/build-and-extend-talos/cluster-operations-and-maintenance/disaster-recovery#recovery***
+
+### Etcd
+Check etcd member list
+```
+talosctl -n <IP> etcd members
+```
+Check etcd status
+```
+talosctl -n <IP> service etcd
 ```
 ### Check what extensions are installed
 ```
-talosctl get extensions -n 192.168.1.116
+talosctl get extensions -n <IP>
 ```
 ### Upgrade
 ```
-talosctl upgrade -n 192.168.1.75 --image factory.talos.dev/metal-installer/613e1592b2da41ae5e265e8789429f223234ab91cb4deb6bc3c0b6262961245:v1.11.5
+talosctl upgrade -n <IP> --image factory.talos.dev/metal-installer/613e1592b2da41ae5e265e8789429f223234ab91cb4deb6bc3c0b6262961245:v1.11.5
+```
+### List files
+```
+talosctl ls -r /usr/local -n <IP>
 ```

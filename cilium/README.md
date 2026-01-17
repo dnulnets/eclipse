@@ -35,7 +35,7 @@ kubectl delete cm kube-flannel-cfg -n kube-system
 ```
 
 ### Version, namespaces and installation parameters
-Sets the version and namespace for the cilium platform. Helm do not autodetect the kubernetes version when generating the template, so we need to set it manually. Make sure it is the version used by talos. You can use ***talosctl dashboard -n IP*** command to view the version of the kube-system.
+Sets the version and namespace for the cilium platform. Helm do not autodetect the kubernetes version when generating the template, so we need to set it manually. Make sure it is the version used by talos. You can use ***talosctl dashboard -n <IP>*** command to view the version of the kube-system.
 
 ```
 --version 1.18.4
